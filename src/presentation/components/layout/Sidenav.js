@@ -14,10 +14,12 @@
 import { Menu, Button } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
+import Routes from "../../shared/Routes";
 
 function Sidenav({ color }) {
   const { pathname } = useLocation();
   const page = pathname.replace("/", "");
+  const { whatsapp } = Routes;
 
   const dashboard = [
     <svg
@@ -218,6 +220,19 @@ function Sidenav({ color }) {
               {rtl}
             </span>
             <span className="label">RTL</span>
+          </NavLink>
+        </Menu.Item>
+        <Menu.Item key="4">
+          <NavLink to={`${whatsapp.home}`}>
+            <span
+              className="icon"
+              style={{
+                background: page === "rtl" ? color : "",
+              }}
+            >
+              {rtl}
+            </span>
+            <span className="label">WhatsApp</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item className="menu-item-header" key="5">

@@ -18,23 +18,45 @@ import Profile from "./presentation/pages/Profile";
 import SignUp from "./presentation/pages/SignUp";
 import SignIn from "./presentation/pages/SignIn";
 import Main from "./presentation/components/layout/Main";
-import "antd/dist/antd.css";
+import WhatsappPage from "./presentation/pages/Whatsapp";
+import "antd/dist/reset.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 
+import Routes from "./presentation/shared/Routes";
+
 function App() {
+  const {
+    dashboard,
+    tables,
+    billing,
+    rtl,
+    timesheet,
+    tasks,
+    repositories,
+    organization,
+    rolesAndPermissions,
+    payment,
+    integrations,
+    whatsapp,
+    profile,
+    signUp,
+    signIn,
+    error,
+  } = Routes;
   return (
     <div className="App">
       <Switch>
-        <Route path="/sign-up" exact component={SignUp} />
-        <Route path="/sign-in" exact component={SignIn} />
+        <Route path={signUp.home} exact component={SignUp} />
+        <Route path={signIn.home} exact component={SignIn} />
         <Main>
-          <Route exact path="/dashboard" component={Home} />
-          <Route exact path="/tables" component={Tables} />
-          <Route exact path="/billing" component={Billing} />
-          <Route exact path="/rtl" component={Rtl} />
-          <Route exact path="/profile" component={Profile} />
-          <Redirect from="*" to="/dashboard" />
+          <Route exact path={dashboard.home} component={Home} />
+          <Route exact path={tables.home} component={Tables} />
+          <Route exact path={billing.home} component={Billing} />
+          <Route exact path={rtl.home} component={Rtl} />
+          <Route exact path={profile.home} component={Profile} />
+          <Route exact path={whatsapp.home} component={WhatsappPage} />
+          {/* <Redirect to={error.home} /> */}
         </Main>
       </Switch>
     </div>

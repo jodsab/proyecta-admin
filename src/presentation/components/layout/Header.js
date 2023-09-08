@@ -25,6 +25,7 @@ import {
   Drawer,
   Typography,
   Switch,
+  Card,
 } from "antd";
 
 import {
@@ -166,21 +167,20 @@ const data = [
 ];
 
 const menu = (
-  <List
-    min-width="100%"
-    className="header-notifications-dropdown "
-    itemLayout="horizontal"
-    dataSource={data}
-    renderItem={(item) => (
-      <List.Item>
-        <List.Item.Meta
-          avatar={<Avatar shape="square" src={item.avatar} />}
-          title={item.title}
-          description={item.description}
-        />
-      </List.Item>
-    )}
-  />
+  <Card style={{ width: "300px" }}>
+    <List
+      dataSource={data}
+      renderItem={(item) => (
+        <List.Item>
+          <List.Item.Meta
+            avatar={<Avatar shape="square" src={item.avatar} />}
+            title={item.title}
+            description={item.description}
+          />
+        </List.Item>
+      )}
+    />
+  </Card>
 );
 
 const logsetting = [
