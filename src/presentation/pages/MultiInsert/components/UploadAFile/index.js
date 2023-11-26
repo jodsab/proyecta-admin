@@ -13,8 +13,8 @@ const UploadAFile = ({ ...props }) => {
         Clickea o arrastra un archivo de excel para insertar datos.
       </p>
       <p className="ant-upload-hint">
-        Los clientes agregados se agregaran a la lista en una tabla, después
-        podrás filtrarlos para seleccionar con quienes ponerte en contacto.
+        Los clientes agregados se agregaran a la lista en una tabla, cuidado de
+        repetir usuarios o no te permitirá agregarlos.
       </p>
     </Dragger>
   );

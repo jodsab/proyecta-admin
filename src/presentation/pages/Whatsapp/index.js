@@ -8,7 +8,7 @@ const WhatsappPage = () => {
   return (
     <div>
       <Card>
-        <Title level={3}>Importa archivos de Excel para whatsapp</Title>
+        <Title level={3}>Contacta a tus posibles clientes</Title>
         <WhatsappSteps />
       </Card>
     </div>

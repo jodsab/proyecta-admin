@@ -10,6 +10,7 @@ const mainRoutes = {
   organization: "/organization",
   rolesAndPermissions: "/rolesAndPermissions",
   payment: "/payment",
+  multiInsert: "/multiInsert",
   whataspp: "/whatsapp",
 
   // routes account
@@ -50,6 +51,9 @@ const Routes = {
   },
   payment: {
     home: `${mainRoutes.payment}`,
+  },
+  multiInsert: {
+    home: `${mainRoutes.multiInsert}`,
   },
   whatsapp: {
     home: `${mainRoutes.whataspp}`,

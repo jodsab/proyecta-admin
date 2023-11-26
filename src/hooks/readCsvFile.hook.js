@@ -13,6 +13,7 @@ const useReadCsvFile = () => {
       const workbook = XLSX.read(new Uint8Array(arrayBuffer), {
         type: "array",
       });
+      console.log("workbook", workbook);
       const sheetName = workbook.SheetNames[0];
       const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
       setCsvJsonData(sheetData);

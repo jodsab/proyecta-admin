@@ -39,6 +39,8 @@ import face4 from "../../../assets/images/face-4.jpg";
 import face5 from "../../../assets/images/face-5.jpeg";
 import face6 from "../../../assets/images/face-6.jpeg";
 import pencil from "../../../assets/images/pencil.svg";
+import useGetAllClients from "./hooks/getAllClients.hook";
+import { formatearFecha } from "../../../helpers/dateFormatters";
 
 const { Title } = Typography;
 
@@ -62,284 +64,58 @@ const formProps = {
 // table code start
 const columns = [
   {
-    title: "AUTHOR",
-    dataIndex: "name",
-    key: "name",
-    width: "32%",
+    title: "Nombres",
+    dataIndex: "nombre",
+    key: "nombre",
   },
   {
-    title: "FUNCTION",
-    dataIndex: "function",
-    key: "function",
-  },
-
-  {
-    title: "STATUS",
-    key: "status",
-    dataIndex: "status",
+    title: "Apellidos",
+    dataIndex: "apellido",
+    key: "apellido",
   },
   {
-    title: "EMPLOYED",
-    key: "employed",
-    dataIndex: "employed",
-  },
-];
-
-const data = [
-  {
-    key: "1",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face2}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>Michael John</Title>
-            <p>michael@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Manager</Title>
-          <p>Organization</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button type="primary" className="tag-primary">
-          ONLINE
-        </Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>23/04/18</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "2",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face3}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>Alexa Liras</Title>
-            <p>alexa@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Programator</Title>
-          <p>Developer</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button className="tag-badge">ONLINE</Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>23/12/20</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "3",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>Laure Perrier</Title>
-            <p>laure@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Executive</Title>
-          <p>Projects</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button type="primary" className="tag-primary">
-          ONLINE
-        </Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>03/04/21</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
+    title: "DNI",
+    dataIndex: "DNI",
+    key: "DNI",
   },
   {
-    key: "4",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face4}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>Miriam Eric</Title>
-            <p>miriam@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Marketing</Title>
-          <p>Organization</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button type="primary" className="tag-primary">
-          ONLINE
-        </Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>03/04/21</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
+    title: "Telefono",
+    dataIndex: "telefono",
+    key: "telefono",
+    render: (data) => {
+      return <a href={`tel:+51${data}`}>{data}</a>;
+    },
   },
   {
-    key: "5",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face5}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>Richard Gran</Title>
-            <p>richard@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Manager</Title>
-          <p>Organization</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button className="tag-badge">ONLINE</Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>23/03/20</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
+    title: "Correo Electrónico",
+    key: "email",
+    dataIndex: "email",
+    render: (data) => {
+      return <a href={`mailto:${data}`}>{data}</a>;
+    },
   },
-
   {
-    key: "6",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face6}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>John Levi</Title>
-            <p>john@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Tester</Title>
-          <p>Developer</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button className="tag-badge">ONLINE</Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>14/04/17</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
+    title: "Distrito",
+    key: "id_distrito",
+    dataIndex: "id_distrito",
+  },
+  {
+    title: "Fecha de registro",
+    key: "fecha_de_registro",
+    dataIndex: "fecha_de_registro",
+    render: (data) => {
+      return formatearFecha(data);
+    },
+  },
+  {
+    title: "Registrado en",
+    key: "id_forma_de_registro",
+    dataIndex: "id_forma_de_registro",
+  },
+  {
+    title: "Ultima Fecha de actualización de datos",
+    key: "fecha_de_edicion",
+    dataIndex: "fecha_de_edicion",
   },
 ];
 // project table start
@@ -588,7 +364,8 @@ const dataproject = [
 
 function Tables() {
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
-
+  const { clients } = useGetAllClients();
+  console.log("clients", clients);
   return (
     <>
       <div className="tabled">
@@ -597,7 +374,7 @@ function Tables() {
             <Card
               bordered={false}
               className="criclebox tablespace mb-24"
-              title="Authors Table"
+              title="Tabla de clientes"
               extra={
                 <>
                   <Radio.Group onChange={onChange} defaultValue="a">
@@ -609,8 +386,9 @@ function Tables() {
             >
               <div className="table-responsive">
                 <Table
+                  loading={clients ? false : true}
                   columns={columns}
-                  dataSource={data}
+                  dataSource={clients}
                   pagination={false}
                   className="ant-border-space"
                 />

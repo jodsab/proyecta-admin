@@ -1,6 +1,6 @@
 import React from "react";
 import { Divider, Steps } from "antd";
-const PSteps = ({ current, onChange }) => {
+const PSteps = ({ stepItems, current, onChange }) => {
   return (
     <div>
       <Steps
@@ -9,25 +9,7 @@ const PSteps = ({ current, onChange }) => {
         current={current}
         onChange={onChange}
         className="site-navigation-steps"
-        items={[
-          {
-            title: "Paso 1",
-            status: "finish",
-            description: "Sube un archivo de Excel",
-          },
-          {
-            title: "Paso 2",
-            status: "process",
-            description: "Selecciona el tipo de mensaje",
-            disabled: true,
-          },
-          {
-            title: "Paso 3",
-            status: "wait",
-            description: "Enviar un mensaje",
-            disabled: true,
-          },
-        ]}
+        items={stepItems}
       />
     </div>
   );

@@ -18,6 +18,7 @@ import Profile from "./presentation/pages/Profile";
 import SignUp from "./presentation/pages/SignUp";
 import SignIn from "./presentation/pages/SignIn";
 import Main from "./presentation/components/layout/Main";
+import MultiInsertPage from "./presentation/pages/MultiInsert";
 import WhatsappPage from "./presentation/pages/Whatsapp";
 import "antd/dist/reset.css";
 import "./assets/styles/main.css";
@@ -38,6 +39,7 @@ function App() {
     rolesAndPermissions,
     payment,
     integrations,
+    multiInsert,
     whatsapp,
     profile,
     signUp,
@@ -55,6 +57,7 @@ function App() {
           <Route exact path={billing.home} component={Billing} />
           <Route exact path={rtl.home} component={Rtl} />
           <Route exact path={profile.home} component={Profile} />
+          <Route exact path={multiInsert.home} component={MultiInsertPage} />
           <Route exact path={whatsapp.home} component={WhatsappPage} />
           {/* <Redirect to={error.home} /> */}
         </Main>

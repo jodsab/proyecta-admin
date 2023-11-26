@@ -19,7 +19,7 @@ import Routes from "../../shared/Routes";
 function Sidenav({ color }) {
   const { pathname } = useLocation();
   const page = pathname.replace("/", "");
-  const { whatsapp } = Routes;
+  const { whatsapp, multiInsert } = Routes;
 
   const dashboard = [
     <svg
@@ -166,7 +166,7 @@ function Sidenav({ color }) {
     <>
       <div className="brand">
         <img src={logo} alt="" />
-        <span>Muse Dashboard</span>
+        <span>Proyecta Innova</span>
       </div>
       <hr />
       <Menu theme="light" mode="inline">
@@ -223,6 +223,19 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="4">
+          <NavLink to={`${multiInsert.home}`}>
+            <span
+              className="icon"
+              style={{
+                background: page === "rtl" ? color : "",
+              }}
+            >
+              {rtl}
+            </span>
+            <span className="label">Agregar Usuarios</span>
+          </NavLink>
+        </Menu.Item>
+        <Menu.Item key="4">
           <NavLink to={`${whatsapp.home}`}>
             <span
               className="icon"
@@ -232,7 +245,7 @@ function Sidenav({ color }) {
             >
               {rtl}
             </span>
-            <span className="label">WhatsApp</span>
+            <span className="label">Contacto</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item className="menu-item-header" key="5">
