@@ -65,7 +65,6 @@ const InsertClients = () => {
               onChangeSteps={onChangeSteps}
               setInsertResult={setInsertResult}
             />
-            ;
           </>
         );
       case 2:

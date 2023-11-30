@@ -1,21 +1,14 @@
-/*!
-  =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
-  =========================================================
-  * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
-  * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
-  * Coded by Creative Tim
-  =========================================================
-  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import ReactApexChart from "react-apexcharts";
-import { Row, Col, Typography } from "antd";
+import { nombresUltimosMesesAbreviados } from "../../../helpers/getUltimosMesesAbreviados";
+import { Row, Col, Typography, Spin } from "antd";
+import useGetAllClients from "../../../hooks/getAllClients.hook";
+import { agruparPorMes } from "../../../helpers/agruparPorMes";
 import eChart from "./configs/eChart";
 
 function EChart() {
   const { Title, Paragraph } = Typography;
+
+  const { clients, loading } = useGetAllClients();
 
   const items = [
     {
@@ -36,25 +29,33 @@ function EChart() {
     },
   ];
 
+  const newEChart = { ...eChart };
+  newEChart.options.xaxis.categories = nombresUltimosMesesAbreviados;
+  const arrEntradas = agruparPorMes(clients);
+  newEChart.series[0].data = arrEntradas;
+
   return (
     <>
       <div id="chart">
-        <ReactApexChart
-          className="bar-chart"
-          options={eChart.options}
-          series={eChart.series}
-          type="bar"
-          height={220}
-        />
+        {loading ? (
+          <Spin />
+        ) : (
+          <ReactApexChart
+            className="bar-chart"
+            options={newEChart.options}
+            series={newEChart.series}
+            type="bar"
+            height={220}
+          />
+        )}
       </div>
       <div className="chart-vistior">
-        <Title level={5}>Active Users</Title>
+        <Title level={5}>Uuarios registrados</Title>
         <Paragraph className="lastweek">
           than last week <span className="bnb2">+30%</span>
         </Paragraph>
         <Paragraph className="lastweek">
-          We have created multiple options for you to put together and customise
-          into pixel perfect pages.
+          Estos son los usuarios registrados en los ultimos 9 meses.
         </Paragraph>
         <Row gutter>
           {items.map((v, index) => (

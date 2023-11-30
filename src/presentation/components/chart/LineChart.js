@@ -1,48 +1,52 @@
-/*!
-  =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
-  =========================================================
-  * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
-  * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
-  * Coded by Creative Tim
-  =========================================================
-  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import ReactApexChart from "react-apexcharts";
-import { Typography } from "antd";
+import { Typography, Spin } from "antd";
 import { MinusOutlined } from "@ant-design/icons";
 import lineChart from "./configs/lineChart";
+import useGetAllClients from "../../../hooks/getAllClients.hook";
+import { nombresUltimosMesesAbreviados } from "../../../helpers/getUltimosMesesAbreviados";
+import { obtenerRegistrosPorForma } from "../../../helpers/obtenerRegistroPorForma";
 
 function LineChart() {
   const { Title, Paragraph } = Typography;
+
+  const { loading, clients } = useGetAllClients();
+
+  const newLineChart = { ...lineChart };
+
+  newLineChart.options.xaxis.categories = nombresUltimosMesesAbreviados;
+  const arrRegistros1 = obtenerRegistrosPorForma(clients, 1);
+  const arrRegistros2 = obtenerRegistrosPorForma(clients, 2);
+  newLineChart.series[0].data = arrRegistros1;
+  newLineChart.series[1].data = arrRegistros2;
 
   return (
     <>
       <div className="linechart">
         <div>
-          <Title level={5}>Active Users</Title>
+          <Title level={5}>Usuarios registrados por plataforma</Title>
           <Paragraph className="lastweek">
             than last week <span className="bnb2">+30%</span>
           </Paragraph>
         </div>
         <div className="sales">
           <ul>
-            <li>{<MinusOutlined />} Traffic</li>
-            <li>{<MinusOutlined />} Sales</li>
+            <li>{<MinusOutlined />} Registrado por vendedor</li>
+            <li>{<MinusOutlined />} Autoregistro</li>
           </ul>
         </div>
       </div>
-
-      <ReactApexChart
-        className="full-width"
-        options={lineChart.options}
-        series={lineChart.series}
-        type="area"
-        height={350}
-        width={"100%"}
-      />
+      {loading ? (
+        <Spin />
+      ) : (
+        <ReactApexChart
+          className="full-width"
+          options={newLineChart.options}
+          series={newLineChart.series}
+          type="area"
+          height={350}
+          width={"100%"}
+        />
+      )}
     </>
   );
 }

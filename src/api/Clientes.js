@@ -6,7 +6,6 @@ export default class ClientesService {
     try {
       const data = await Api.get(`${BASE_URL}/clientes`);
       const dataJson = await data.json();
-
       return dataJson;
     } catch (error) {
       console.log("error", error);

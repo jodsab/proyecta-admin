@@ -39,7 +39,7 @@ import face4 from "../../../assets/images/face-4.jpg";
 import face5 from "../../../assets/images/face-5.jpeg";
 import face6 from "../../../assets/images/face-6.jpeg";
 import pencil from "../../../assets/images/pencil.svg";
-import useGetAllClients from "./hooks/getAllClients.hook";
+import useGetAllClients from "../../../hooks/getAllClients.hook";
 import { formatearFecha } from "../../../helpers/dateFormatters";
 
 const { Title } = Typography;

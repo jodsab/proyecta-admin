@@ -32,7 +32,7 @@ const TableClients = ({
           </Button>
         </Col>
       </Row>
-      <Table columns={columns} dataSource={dataSource} />;
+      <Table columns={columns} dataSource={dataSource} />
     </div>
   );
 };
